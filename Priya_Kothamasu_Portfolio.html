@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Kothamasu — Marketing Operations & Analytics Manager</title>
+<meta name="description" content="9+ years Fortune 500 Marketing Operations & Analytics leader. 10,000+ global enterprise clients, 50+ campaigns/year, 40% overhead reduction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ RESET & BASE ═══════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:#050b18;color:#f1f5f9;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#0a1628}
+::-webkit-scrollbar-thumb{background:rgba(6,182,212,.4);border-radius:2px}
+::selection{background:rgba(6,182,212,.2);color:#22d3ee}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;cursor:pointer;font:inherit;color:inherit}
+ul{list-style:none}
+
+/* ═══════════ CANVAS BG ═══════════ */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ═══════════ SCROLL PROGRESS ═══════════ */
+#scroll-bar{position:fixed;top:0;left:0;height:2px;z-index:100;background:linear-gradient(90deg,#06b6d4,#8b5cf6);box-shadow:0 0 8px rgba(6,182,212,.5);width:0;transition:width .05s}
+
+/* ═══════════ SPLASH ═══════════ */
+#splash{position:fixed;inset:0;z-index:200;background:#050b18;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease}
+#splash.hide{opacity:0;pointer-events:none}
+.splash-ring{width:100px;height:100px;border-radius:50%;background:conic-gradient(from 0deg,#06b6d4,#8b5cf6,transparent,#06b6d4);display:flex;align-items:center;justify-content:center;animation:spin 3s linear infinite;margin-bottom:40px}
+.splash-inner{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(139,92,246,.15));border:1px solid rgba(6,182,212,.3);display:flex;align-items:center;justify-content:center}
+.splash-mono{font-size:34px;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.splash-name{color:#64748b;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;opacity:0;animation:fadeUp .5s .4s forwards}
+.splash-bar-track{width:180px;height:2px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;opacity:0;animation:fadeIn .4s .5s forwards}
+.splash-bar-fill{height:100%;width:0;background:linear-gradient(90deg,#06b6d4,#8b5cf6);box-shadow:0 0 8px rgba(6,182,212,.6);border-radius:2px;transition:width .08s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ═══════════ NAV ═══════════ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;transition:all .3s}
+#nav.scrolled{background:rgba(5,11,24,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer}
+.nav-logo-box{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(139,92,246,.2));border:1px solid rgba(6,182,212,.3);color:#22d3ee}
+.nav-logo-name{color:#64748b;font-size:13px;font-weight:500}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 14px;font-size:13px;font-weight:500;color:#64748b;border-radius:8px;transition:all .2s}
+.nav-link:hover,.nav-link.active{color:#22d3ee;background:rgba(6,182,212,.08)}
+.nav-cta{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);color:#22d3ee;transition:all .2s}
+.nav-cta:hover{background:rgba(6,182,212,.18)}
+#burger{display:none;color:#94a3b8;padding:8px}
+#mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;z-index:45;background:rgba(5,11,24,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);padding:12px}
+#mobile-menu.show{display:block}
+#mobile-menu a{display:block;padding:12px 16px;font-size:14px;font-weight:500;color:#94a3b8;border-radius:8px}
+#mobile-menu a:hover{color:#22d3ee;background:rgba(6,182,212,.06)}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}#burger{display:block}.nav-logo-name{display:none}}
+
+/* ═══════════ CONTENT WRAPPER ═══════════ */
+#content{position:relative;z-index:1;opacity:0;transition:opacity .8s ease}
+#content.show{opacity:1}
+.section{padding:80px 20px;max-width:1100px;margin:0 auto}
+
+/* ═══════════ GRADIENTS & GLASS ═══════════ */
+.gradient-text{background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.glass{background:rgba(255,255,255,.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08);border-radius:16px}
+.glass-hover{transition:all .3s}
+.glass-hover:hover{background:rgba(6,182,212,.05);border-color:rgba(6,182,212,.25);box-shadow:0 0 30px rgba(6,182,212,.1);transform:translateY(-2px)}
+.chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.chip-cyan{background:rgba(6,182,212,.12);color:#22d3ee;border:1px solid rgba(6,182,212,.25)}
+.chip-purple{background:rgba(139,92,246,.12);color:#a78bfa;border:1px solid rgba(139,92,246,.25)}
+.chip-gold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-green{background:rgba(34,197,94,.08);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.divider{height:1px;max-width:1100px;margin:0 auto;background:linear-gradient(90deg,transparent,rgba(6,182,212,.15),transparent)}
+
+/* ═══════════ SECTION HEADERS ═══════════ */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;color:#f1f5f9}
+.sec-sub{margin-top:8px;font-size:14px;color:#64748b}
+.text-center{text-align:center}
+
+/* ═══════════ HERO ═══════════ */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding-top:100px;padding-bottom:60px;text-align:center}
+.hero-status{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;font-size:12px;font-weight:600;margin-bottom:32px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-name{font-size:clamp(2.8rem,8vw,5.5rem);font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:16px}
+.hero-role{font-size:clamp(1rem,2.5vw,1.3rem);font-weight:600;color:#64748b;letter-spacing:.02em;margin-bottom:24px}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:36px}
+.hero-summary{max-width:680px;margin:0 auto 40px;font-size:1.05rem;color:#64748b;line-height:1.7}
+.hero-summary b{font-weight:600}
+.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#06b6d4,#8b5cf6);color:#fff;box-shadow:0 0 24px rgba(6,182,212,.3);transition:all .3s}
+.btn-primary:hover{box-shadow:0 0 36px rgba(6,182,212,.5);transform:translateY(-1px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:600;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#cbd5e1;transition:all .3s}
+.btn-secondary:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+.hero-links{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;font-size:13px;color:#64748b}
+.hero-links a{display:flex;align-items:center;gap:5px;transition:color .2s}
+.hero-links a:hover{color:#22d3ee}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#334155;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ═══════════ STATS ═══════════ */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.stat-card{padding:24px;text-align:center;position:relative;overflow:hidden}
+.stat-icon{margin-bottom:10px;color:#06b6d4;font-size:20px}
+.stat-number{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:12px;color:#64748b;font-weight:500}
+.impact-strip{border-radius:16px;padding:24px 32px;background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(139,92,246,.04));border:1px solid rgba(6,182,212,.15)}
+.impact-strip h4{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#06b6d4;margin-bottom:20px}
+.impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.impact-item{display:flex;gap:12px}
+.impact-item strong{font-size:1.3rem;font-weight:900;color:#22d3ee;line-height:1;flex-shrink:0}
+.impact-item p{font-size:13px;color:#94a3b8;line-height:1.5}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ═══════════ EXPERIENCE ═══════════ */
+.timeline{position:relative;padding-left:48px}
+.timeline::before{content:'';position:absolute;left:19px;top:24px;bottom:24px;width:2px;background:linear-gradient(to bottom,rgba(6,182,212,.5),rgba(139,92,246,.3),rgba(255,255,255,.04))}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-dot{position:absolute;left:-30px;top:20px;width:14px;height:14px;border-radius:50%;background:rgba(6,182,212,.25);border:2px solid rgba(6,182,212,.3);transition:all .3s}
+.tl-item.open .tl-dot{background:linear-gradient(135deg,#06b6d4,#8b5cf6);border-color:#06b6d4;box-shadow:0 0 12px rgba(6,182,212,.5)}
+.tl-card{border-radius:16px;overflow:hidden;transition:all .3s;cursor:pointer;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07)}
+.tl-item.open .tl-card{background:rgba(6,182,212,.04);border-color:rgba(6,182,212,.2);box-shadow:0 0 30px rgba(6,182,212,.08)}
+.tl-header{padding:20px 24px}
+.tl-company{font-weight:700;font-size:15px;color:#f1f5f9;margin-bottom:2px}
+.tl-company-note{font-size:12px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.06);color:#64748b;margin-left:8px}
+.tl-role{font-weight:600;font-size:14px;color:#22d3ee;font-style:italic;margin-bottom:8px}
+.tl-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:#64748b;margin-bottom:10px}
+.tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tl-summary{font-size:14px;color:#64748b;margin-top:10px;line-height:1.6}
+.tl-chevron{flex-shrink:0;margin-top:4px;color:#64748b;transition:transform .3s}
+.tl-item.open .tl-chevron{transform:rotate(180deg)}
+.tl-expand{max-height:0;overflow:hidden;transition:max-height .5s ease;border-top:0 solid transparent}
+.tl-item.open .tl-expand{max-height:3000px;border-top:1px solid rgba(255,255,255,.05)}
+.tl-expand-inner{padding:20px 24px}
+.tl-impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px}
+.tl-impact-chip{border-radius:12px;padding:12px;text-align:center;background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.12)}
+.tl-impact-chip strong{display:block;font-size:1.05rem;font-weight:900;color:#22d3ee;margin-bottom:2px}
+.tl-impact-chip span{font-size:11px;color:#64748b;line-height:1.3}
+.tl-bullets{list-style:none}
+.tl-bullets li{display:flex;gap:10px;font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:10px}
+.tl-bullets li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#06b6d4;margin-top:7px}
+@media(max-width:640px){.tl-header{padding:16px}.tl-expand-inner{padding:16px}.tl-impact-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ═══════════ PROJECTS ═══════════ */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.proj-card{padding:24px;display:flex;flex-direction:column}
+.proj-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(6,182,212,.1));border:1px solid rgba(139,92,246,.25);margin-bottom:16px}
+.proj-title{font-weight:700;font-size:14px;color:#f1f5f9;margin-bottom:4px}
+.proj-org{font-size:12px;color:#64748b;margin-bottom:12px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.proj-bullets{list-style:none;flex:1}
+.proj-bullets li{display:flex;gap:8px;font-size:12px;color:#94a3b8;line-height:1.6;margin-bottom:8px}
+.proj-bullets li::before{content:'';flex-shrink:0;width:4px;height:4px;border-radius:50%;background:#8b5cf6;margin-top:7px}
+.proj-link{margin-top:16px;font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;gap:6px;transition:color .2s}
+.proj-link:hover{color:#06b6d4}
+
+/* ═══════════ SKILLS ═══════════ */
+.comp-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px}
+.comp-chip{font-size:12px;font-weight:500;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#94a3b8;transition:all .2s;cursor:default}
+.comp-chip:hover{background:rgba(6,182,212,.08);border-color:rgba(6,182,212,.25);color:#22d3ee}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.skill-group{border-radius:16px;padding:20px}
+.skill-group h3{font-size:13px;font-weight:700;margin-bottom:16px}
+.skill-item{margin-bottom:12px}
+.skill-item-header{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
+.skill-item-name{color:#94a3b8;font-weight:500}
+.skill-item-pct{font-weight:700}
+.skill-track{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;border-radius:2px;width:0;transition:width 1.2s ease}
+.skill-fill.animate{width:var(--level)}
+
+/* ═══════════ EDUCATION ═══════════ */
+.edu-card{display:flex;gap:20px;padding:24px 32px}
+.edu-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.edu-degree{font-weight:700;font-size:15px;color:#f1f5f9;margin-bottom:4px}
+.edu-school{font-size:14px;font-weight:500;color:#06b6d4;margin-bottom:8px}
+.edu-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:#64748b}
+@media(max-width:640px){.edu-card{padding:16px 20px;flex-direction:column;gap:12px}}
+
+/* ═══════════ CERTS/AWARDS/LEADERSHIP ═══════════ */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.cal-col h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.cal-item{padding:14px;margin-bottom:10px}
+.cal-item-title{font-weight:600;font-size:13px;color:#f1f5f9;margin-bottom:2px}
+.cal-item-sub{font-size:12px;color:#64748b;display:flex;justify-content:space-between;align-items:center}
+.cal-lead-item{display:flex;gap:10px;padding:14px;margin-bottom:10px}
+.cal-lead-item::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#8b5cf6;margin-top:6px}
+.cal-lead-item span{font-size:13px;color:#94a3b8;line-height:1.5}
+
+/* ═══════════ FOOTER ═══════════ */
+#footer{padding:60px 20px;border-top:1px solid rgba(255,255,255,.05);max-width:1100px;margin:0 auto}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:32px;margin-bottom:40px}
+.footer-brand{font-size:20px;font-weight:900;margin-bottom:4px}
+.footer-role{font-size:14px;color:#64748b}
+.footer-loc{font-size:12px;color:#64748b;margin-top:6px}
+.footer-actions{display:flex;align-items:center;gap:12px}
+.footer-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:600;background:linear-gradient(135deg,#06b6d4,#8b5cf6);color:#fff;box-shadow:0 0 20px rgba(6,182,212,.2);transition:all .3s}
+.footer-btn:hover{box-shadow:0 0 30px rgba(6,182,212,.35)}
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#64748b;transition:all .2s;font-size:14px}
+.footer-social a:hover{background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.25);color:#22d3ee}
+.footer-roles{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:32px}
+.footer-copy{text-align:center;font-size:12px;color:#334155}
+@media(max-width:640px){.footer-top{flex-direction:column;text-align:center}.footer-actions{flex-direction:column}}
+
+/* ═══════════ SCROLL REVEAL ═══════════ */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}.reveal-d6{transition-delay:.6s}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ CANVAS BACKGROUND ═══════════ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ═══════════ SCROLL PROGRESS ═══════════ -->
+<div id="scroll-bar"></div>
+
+<!-- ═══════════ SPLASH SCREEN ═══════════ -->
+<div id="splash">
+  <div class="splash-ring"><div class="splash-inner"><span class="splash-mono">PK</span></div></div>
+  <p class="splash-name">Priya Kothamasu</p>
+  <div class="splash-bar-track"><div class="splash-bar-fill" id="splash-fill"></div></div>
+</div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="nav">
+  <div class="nav-logo" onclick="scrollToId('hero')">
+    <div class="nav-logo-box">PK</div>
+    <span class="nav-logo-name">Priya Kothamasu</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#hero" data-sec="hero">Home</a>
+    <a class="nav-link" href="#stats" data-sec="stats">Impact</a>
+    <a class="nav-link" href="#experience" data-sec="experience">Experience</a>
+    <a class="nav-link" href="#projects" data-sec="projects">Projects</a>
+    <a class="nav-link" href="#skills" data-sec="skills">Skills</a>
+    <a class="nav-link" href="#education" data-sec="education">Education</a>
+    <a class="nav-link" href="#certifications" data-sec="certifications">Awards</a>
+  </div>
+  <a class="nav-cta" href="https://linkedin.com/in/priya-kothamasu-4358992a1" target="_blank">&#9660; Resume</a>
+  <button id="burger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+</nav>
+<div id="mobile-menu">
+  <a href="#hero" onclick="closeMobileMenu()">Home</a>
+  <a href="#stats" onclick="closeMobileMenu()">Impact</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+  <a href="#education" onclick="closeMobileMenu()">Education</a>
+  <a href="#certifications" onclick="closeMobileMenu()">Awards</a>
+</div>
+
+<!-- ═══════════ MAIN CONTENT ═══════════ -->
+<div id="content">
+
+<!-- ▬▬▬ HERO ▬▬▬ -->
+<section id="hero" class="section">
+  <div>
+    <h1 class="hero-name reveal reveal-d1"><span style="color:#f1f5f9">Priya </span><span class="gradient-text">Kothamasu</span></h1>
+    <p class="hero-role reveal reveal-d2">Senior Marketing Analyst & Campaign Operations Lead</p>
+    <p class="hero-summary reveal reveal-d4">
+      9+ years at <b style="color:#22d3ee">ADP Fortune 500</b> owning end-to-end enterprise marketing campaigns for
+      <b style="color:#a78bfa">10,000+ global clients</b>. Eliminated <b style="color:#22d3ee">40% of operational overhead</b> via automation. Maintained
+      <b style="color:#4ade80">100% compliance</b> across 7 years. Earned <b class="gradient-text-gold">4&times; Top Performer</b> recognition.
+    </p>
+    <div class="hero-ctas reveal reveal-d5">
+      <a href="#experience" class="btn-primary">View Experience &#8595;</a>
+      <a href="https://linkedin.com/in/priya-kothamasu-4358992a1" target="_blank" class="btn-secondary">&#128279; LinkedIn Profile</a>
+    </div>
+    <div class="hero-links reveal reveal-d6">
+      <a href="mailto:prikoth2425@gmail.com">&#9993; prikoth2425@gmail.com</a>
+      <a href="https://linkedin.com/in/priya-kothamasu-4358992a1" target="_blank">&#128279; LinkedIn</a>
+      <a href="https://github.com/priya-marketing-analytics" target="_blank">&#128187; GitHub Portfolio</a>
+      <span>&#128205; Mason, OH 45040</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ▬▬▬ STATS ▬▬▬ -->
+<section id="stats" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#06b6d4">By The Numbers</p>
+    <h2 class="sec-title reveal reveal-d1">9 Years of Measurable Impact</h2>
+  </div>
+  <div class="stats-grid">
+    <div class="glass glass-hover stat-card reveal"><div class="stat-icon">&#128188;</div><div class="stat-number" data-target="9" data-suffix="+">0</div><div class="stat-label">Years Fortune 500</div></div>
+    <div class="glass glass-hover stat-card reveal reveal-d1"><div class="stat-icon">&#128101;</div><div class="stat-number" data-target="10000" data-suffix="+" data-format="k">0</div><div class="stat-label">Global Enterprise Clients</div></div>
+    <div class="glass glass-hover stat-card reveal reveal-d2"><div class="stat-icon">&#9889;</div><div class="stat-number" data-target="50" data-suffix="+">0</div><div class="stat-label">Campaigns Per Year</div></div>
+    <div class="glass glass-hover stat-card reveal reveal-d3"><div class="stat-icon">&#128200;</div><div class="stat-number" data-target="40" data-suffix="%">0</div><div class="stat-label">Overhead Eliminated</div></div>
+    <div class="glass glass-hover stat-card reveal reveal-d4"><div class="stat-icon">&#127942;</div><div class="stat-number" data-target="4" data-suffix="&times;">0</div><div class="stat-label">Top Performer</div></div>
+    <div class="glass glass-hover stat-card reveal reveal-d5"><div class="stat-icon">&#128737;</div><div class="stat-number" data-target="100" data-suffix="%">0</div><div class="stat-label">SLA Compliance &mdash; 7 Yrs</div></div>
+  </div>
+  <div class="impact-strip reveal">
+    <h4>&#10022; Top 3 Impact Highlights</h4>
+    <div class="impact-grid">
+      <div class="impact-item"><strong>40%</strong><p>Operational overhead eliminated via engineering automation across 8 workflows &mdash; at zero headcount cost.</p></div>
+      <div class="impact-item"><strong>1,500+</strong><p>Communications audited annually with 100% compliance and zero violations across 7 consecutive years.</p></div>
+      <div class="impact-item"><strong>50&ndash;100+</strong><p>Enterprise campaigns orchestrated per year serving 10,000+ global clients across Fortune 500 portfolio.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:linear-gradient(90deg,transparent,rgba(139,92,246,.15),transparent)"></div>
+
+<!-- ▬▬▬ EXPERIENCE ▬▬▬ -->
+<section id="experience" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#06b6d4">Career Story</p>
+    <h2 class="sec-title reveal reveal-d1">Professional Experience</h2>
+    <p class="sec-sub reveal reveal-d2">Click any role to expand details</p>
+  </div>
+  <div class="timeline">
+
+    <!-- EXP 1: Senior ADP -->
+    <div class="tl-item open reveal" data-tl>
+      <div class="tl-dot"></div>
+      <div class="tl-card" onclick="toggleTimeline(this.parentElement)">
+        <div class="tl-header">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div style="flex:1;min-width:0">
+              <div><span class="tl-company">ADP, Inc.</span><span class="tl-company-note">Fortune 500 &mdash; Global HR Technology</span></div>
+              <div class="tl-role">Senior Marketing Analyst & Campaign Operations Lead</div>
+              <div class="tl-meta"><span>&#128197; Jul 2016 &ndash; Aug 2023</span><span>&#128205; Hyderabad, India</span><span class="chip chip-purple">7 years</span></div>
+              <div class="tl-tags">
+                <span class="chip chip-cyan">Fortune 500</span><span class="chip chip-cyan">Eloqua</span><span class="chip chip-cyan">Tableau</span><span class="chip chip-cyan">Campaign Ops</span><span class="chip chip-cyan">Team Lead</span>
+              </div>
+            </div>
+            <span class="tl-chevron">&#9660;</span>
+          </div>
+          <p class="tl-summary">Owned end-to-end enterprise campaign operations for 10,000+ global clients &mdash; drove 40% efficiency gains through automation while maintaining zero compliance violations across 7 years. 4&times; Top Performer.</p>
+        </div>
+        <div class="tl-expand">
+          <div class="tl-expand-inner">
+            <div class="tl-impact-grid">
+              <div class="tl-impact-chip"><strong>40%</strong><span>Manual hours eliminated via automation</span></div>
+              <div class="tl-impact-chip"><strong>1,500+</strong><span>Communications audited &mdash; zero violations</span></div>
+              <div class="tl-impact-chip"><strong>4&times;</strong><span>Consecutive Top Performer awards</span></div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Delivered 50&ndash;100+ campaigns annually across Eloqua, Lyris, and enterprise platforms &mdash; engineered automation across 8 workflows that eliminated 40% of manual hours, enabling a 30% volume increase with no added headcount.</li>
+              <li>Led 20+ enterprise system migrations and cross-functional initiatives across marketing, legal, product, and technology teams &mdash; 100% on-time delivery with zero compliance escalations.</li>
+              <li>Built and trained a 12+ member analyst team to zero-defect execution standards; authored SOPs that cut onboarding ramp-up time and sustained quality benchmarks across all programs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXP 2: Junior ADP -->
+    <div class="tl-item reveal reveal-d1" data-tl>
+      <div class="tl-dot"></div>
+      <div class="tl-card" onclick="toggleTimeline(this.parentElement)">
+        <div class="tl-header">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div style="flex:1;min-width:0">
+              <div><span class="tl-company">ADP, Inc.</span><span class="tl-company-note">Finance & Banking Operations Division</span></div>
+              <div class="tl-role">Operations Analyst & Team Lead Support</div>
+              <div class="tl-meta"><span>&#128197; Nov 2014 &ndash; Jun 2016</span><span>&#128205; Hyderabad, India</span><span class="chip chip-purple">1 yr 8 mo</span></div>
+              <div class="tl-tags"><span class="chip chip-cyan">SLA Excellence</span><span class="chip chip-cyan">Operations</span><span class="chip chip-cyan">Team Lead</span><span class="chip chip-cyan">Payroll & Finance</span></div>
+            </div>
+            <span class="tl-chevron">&#9660;</span>
+          </div>
+          <p class="tl-summary">Managed enterprise client service operations in ADP's Finance & Banking division &mdash; processing 30&ndash;40 priority requests daily with 100% SLA compliance across 20 consecutive months.</p>
+        </div>
+        <div class="tl-expand">
+          <div class="tl-expand-inner">
+            <div class="tl-impact-grid">
+              <div class="tl-impact-chip"><strong>100%</strong><span>SLA compliance &mdash; 20 consecutive months</span></div>
+              <div class="tl-impact-chip"><strong>12+</strong><span>Associates onboarded & trained</span></div>
+              <div class="tl-impact-chip"><strong>0</strong><span>SLA breaches in 20-month record</span></div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Processed 30&ndash;40 high-priority enterprise client service requests daily while sustaining 100% SLA compliance over 20 consecutive months &mdash; contributing to a zero-breach record across payroll, finance, and banking operations.</li>
+              <li>Trained and onboarded 12+ new associates on operational workflows, documentation standards, and quality protocols &mdash; authoring comprehensive SOPs that accelerated team ramp-up and sustained quality benchmarks.</li>
+              <li>Supported team leads in workload management, quality assurance, and operational tracking; recognized with Star of the Month and Team Excellence awards for operational reliability and team contribution.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ▬▬▬ PROJECTS ▬▬▬ -->
+<section id="projects" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#8b5cf6">Applied Work</p>
+    <h2 class="sec-title reveal reveal-d1">Analytics Projects</h2>
+    <p class="sec-sub reveal reveal-d2">Graduate Projects &mdash; Wright State University</p>
+    <a href="https://github.com/priya-marketing-analytics" target="_blank" class="reveal reveal-d3" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:13px;color:#06b6d4">&#128187; github.com/priya-marketing-analytics &#8599;</a>
+  </div>
+  <div class="projects-grid">
+    <div class="glass glass-hover proj-card reveal">
+      <div class="proj-icon">&#128202;</div>
+      <div class="proj-title">Customer CSAT Analytics Capstone</div>
+      <div class="proj-org">Wright State University</div>
+      <div class="proj-stack"><span class="chip chip-purple" style="font-size:10px">SPSS</span><span class="chip chip-purple" style="font-size:10px">Tableau</span><span class="chip chip-purple" style="font-size:10px">Predictive Modeling</span><span class="chip chip-purple" style="font-size:10px">Segmentation</span></div>
+      <ul class="proj-bullets">
+        <li>Analyzed 85,000+ customer interaction records using predictive modeling and segmentation to identify top 5 CSAT drivers.</li>
+        <li>Delivered executive-level Tableau dashboards structured for real-world business decision-making.</li>
+        <li>Surfaced 5 high-impact root causes of negative experience enabling actionable operational improvements.</li>
+      </ul>
+      <a href="https://github.com/priya-marketing-analytics" target="_blank" class="proj-link">&#128187; View on GitHub &#8599;</a>
+    </div>
+    <div class="glass glass-hover proj-card reveal reveal-d1">
+      <div class="proj-icon">&#128241;</div>
+      <div class="proj-title">Multi-Channel Demand Generation Campaign</div>
+      <div class="proj-org">Wright State University</div>
+      <div class="proj-stack"><span class="chip chip-purple" style="font-size:10px">Google Ads</span><span class="chip chip-purple" style="font-size:10px">Meta</span><span class="chip chip-purple" style="font-size:10px">YouTube</span><span class="chip chip-purple" style="font-size:10px">A/B Testing</span></div>
+      <ul class="proj-bullets">
+        <li>Designed and managed a full-funnel paid digital campaign across Google Ads, Meta, YouTube, and influencer channels.</li>
+        <li>Developed audience targeting strategy, allocated simulated budgets, and executed A/B tests on creative and messaging variants.</li>
+        <li>Optimized KPIs week-over-week across the full campaign lifecycle.</li>
+      </ul>
+      <a href="https://github.com/priya-marketing-analytics" target="_blank" class="proj-link">&#128187; View on GitHub &#8599;</a>
+    </div>
+    <div class="glass glass-hover proj-card reveal reveal-d2">
+      <div class="proj-icon">&#128640;</div>
+      <div class="proj-title">Social & Viral Marketing Campaign Simulation</div>
+      <div class="proj-org">Stukent Certified Simulation</div>
+      <div class="proj-stack"><span class="chip chip-purple" style="font-size:10px">Instagram</span><span class="chip chip-purple" style="font-size:10px">Facebook</span><span class="chip chip-purple" style="font-size:10px">X</span><span class="chip chip-purple" style="font-size:10px">TikTok</span><span class="chip chip-purple" style="font-size:10px">Pinterest</span></div>
+      <ul class="proj-bullets">
+        <li>Orchestrated a cross-platform social campaign across Instagram, Facebook, X, TikTok, and Pinterest.</li>
+        <li>Managed editorial calendars, simulated budget allocation, and engagement reporting.</li>
+        <li>Optimized for virality metrics; received Stukent Digital Marketing certification.</li>
+      </ul>
+      <a href="https://github.com/priya-marketing-analytics" target="_blank" class="proj-link">&#128187; View on GitHub &#8599;</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:linear-gradient(90deg,transparent,rgba(34,197,94,.12),transparent)"></div>
+
+<!-- ▬▬▬ SKILLS ▬▬▬ -->
+<section id="skills" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#4ade80">Technical Arsenal</p>
+    <h2 class="sec-title reveal reveal-d1">Skills & Technologies</h2>
+  </div>
+  <div class="comp-chips reveal reveal-d2">
+    <span class="comp-chip">Marketing Operations & Automation</span><span class="comp-chip">Campaign Lifecycle Management</span><span class="comp-chip">Eloqua / Lyris</span><span class="comp-chip">Audience Segmentation & Targeting</span><span class="comp-chip">A/B Testing & Experiment Analysis</span><span class="comp-chip">KPI Dashboard Design & Reporting</span><span class="comp-chip">Performance Analytics</span><span class="comp-chip">Cross-Functional Program Management</span><span class="comp-chip">Change Management</span><span class="comp-chip">Executive Stakeholder Engagement</span><span class="comp-chip">Process Improvement & SOP Development</span><span class="comp-chip">Compliance & Quality Auditing</span><span class="comp-chip">Team Leadership & Mentoring</span><span class="comp-chip">Budget & Timeline Governance</span><span class="comp-chip">Data Analysis (Tableau, Excel, SQL)</span>
+  </div>
+  <div class="skills-grid" id="skills-grid">
+    <div class="skill-group reveal" style="background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.2)">
+      <h3 style="color:#22d3ee">Marketing Platforms</h3>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Eloqua</span><span class="skill-item-pct" style="color:#06b6d4">95%</span></div><div class="skill-track"><div class="skill-fill" style="--level:95%;background:#06b6d4"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Lyris</span><span class="skill-item-pct" style="color:#06b6d4">88%</span></div><div class="skill-track"><div class="skill-fill" style="--level:88%;background:#06b6d4"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Google Ads (Certified)</span><span class="skill-item-pct" style="color:#06b6d4">85%</span></div><div class="skill-track"><div class="skill-fill" style="--level:85%;background:#06b6d4"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Google Analytics</span><span class="skill-item-pct" style="color:#06b6d4">80%</span></div><div class="skill-track"><div class="skill-fill" style="--level:80%;background:#06b6d4"></div></div></div>
+    </div>
+    <div class="skill-group reveal reveal-d1" style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.2)">
+      <h3 style="color:#a78bfa">Analytics & BI</h3>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Tableau</span><span class="skill-item-pct" style="color:#8b5cf6">92%</span></div><div class="skill-track"><div class="skill-fill" style="--level:92%;background:#8b5cf6"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Advanced Excel</span><span class="skill-item-pct" style="color:#8b5cf6">96%</span></div><div class="skill-track"><div class="skill-fill" style="--level:96%;background:#8b5cf6"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">SPSS</span><span class="skill-item-pct" style="color:#8b5cf6">78%</span></div><div class="skill-track"><div class="skill-fill" style="--level:78%;background:#8b5cf6"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">SQL</span><span class="skill-item-pct" style="color:#8b5cf6">82%</span></div><div class="skill-track"><div class="skill-fill" style="--level:82%;background:#8b5cf6"></div></div></div>
+    </div>
+    <div class="skill-group reveal reveal-d2" style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15)">
+      <h3 style="color:#fbbf24">Operations & PM</h3>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">CRM Systems</span><span class="skill-item-pct" style="color:#fbbf24">85%</span></div><div class="skill-track"><div class="skill-fill" style="--level:85%;background:#fbbf24"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">RPA Tools</span><span class="skill-item-pct" style="color:#fbbf24">80%</span></div><div class="skill-track"><div class="skill-fill" style="--level:80%;background:#fbbf24"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">PowerPoint</span><span class="skill-item-pct" style="color:#fbbf24">90%</span></div><div class="skill-track"><div class="skill-fill" style="--level:90%;background:#fbbf24"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">SOP Documentation</span><span class="skill-item-pct" style="color:#fbbf24">95%</span></div><div class="skill-track"><div class="skill-fill" style="--level:95%;background:#fbbf24"></div></div></div>
+    </div>
+    <div class="skill-group reveal reveal-d3" style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15)">
+      <h3 style="color:#4ade80">Core Disciplines</h3>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Campaign Lifecycle Mgmt</span><span class="skill-item-pct" style="color:#4ade80">96%</span></div><div class="skill-track"><div class="skill-fill" style="--level:96%;background:#4ade80"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Marketing Automation</span><span class="skill-item-pct" style="color:#4ade80">93%</span></div><div class="skill-track"><div class="skill-fill" style="--level:93%;background:#4ade80"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">KPI Reporting</span><span class="skill-item-pct" style="color:#4ade80">94%</span></div><div class="skill-track"><div class="skill-fill" style="--level:94%;background:#4ade80"></div></div></div>
+      <div class="skill-item"><div class="skill-item-header"><span class="skill-item-name">Compliance Auditing</span><span class="skill-item-pct" style="color:#4ade80">95%</span></div><div class="skill-track"><div class="skill-fill" style="--level:95%;background:#4ade80"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:linear-gradient(90deg,transparent,rgba(251,191,36,.12),transparent)"></div>
+
+<!-- ▬▬▬ EDUCATION ▬▬▬ -->
+<section id="education" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#fbbf24">Academic Foundation</p>
+    <h2 class="sec-title reveal reveal-d1">Education</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="glass glass-hover edu-card reveal">
+      <div class="edu-icon" style="background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24">&#127891;</div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px">
+          <div class="edu-degree">Master of Science &mdash; Marketing & Data Insights</div>
+          <span class="chip chip-gold" style="flex-shrink:0">&#11088; GPA 4.0 / 4.0</span>
+        </div>
+        <div class="edu-school">Wright State University &middot; Dayton, OH</div>
+        <div class="edu-meta"><span>&#128197; Jan 2024 &ndash; Dec 2025</span><span class="chip chip-cyan">General Secretary, Analytics Club (2025)</span></div>
+      </div>
+    </div>
+    <div class="glass glass-hover edu-card reveal reveal-d1">
+      <div class="edu-icon" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#64748b">&#127891;</div>
+      <div>
+        <div class="edu-degree">Bachelor of Commerce (B.Com)</div>
+        <div class="edu-school">Acharya Nagarjuna University &middot; India</div>
+        <div class="edu-meta"><span>&#128197; Aug 2011 &ndash; Aug 2014</span><span>GPA: 3.5 / 4.0</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:linear-gradient(90deg,transparent,rgba(251,191,36,.12),transparent)"></div>
+
+<!-- ▬▬▬ CERTIFICATIONS / AWARDS / LEADERSHIP ▬▬▬ -->
+<section id="certifications" class="section">
+  <div class="text-center" style="margin-bottom:48px">
+    <p class="sec-label reveal" style="color:#f59e0b">Recognition & Credentials</p>
+    <h2 class="sec-title reveal reveal-d1">Certifications, Awards & Leadership</h2>
+  </div>
+  <div class="cal-grid">
+    <div class="reveal">
+      <h3 style="color:#06b6d4">&#128737; Certifications</h3>
+      <div class="glass glass-hover cal-item"><div class="cal-item-title">Google Ads Certified</div><div class="cal-item-sub"><span>Google</span><span class="chip chip-cyan" style="font-size:10px">Sep 2024</span></div></div>
+      <div class="glass glass-hover cal-item"><div class="cal-item-title">Stukent Digital Marketing Certified</div><div class="cal-item-sub"><span>Stukent</span><span class="chip chip-cyan" style="font-size:10px">Jan 2025</span></div></div>
+      <div class="glass glass-hover cal-item"><div class="cal-item-title">Social Media Simternship&reg; &mdash; Classic</div><div class="cal-item-sub"><span>Stukent</span><span class="chip chip-cyan" style="font-size:10px">2024</span></div></div>
+      <div class="glass glass-hover cal-item"><div class="cal-item-title">MBTN Module Badges</div><div class="cal-item-sub"><span>MBTN</span><span class="chip chip-cyan" style="font-size:10px">2024</span></div></div>
+    </div>
+    <div class="reveal reveal-d1">
+      <h3 style="color:#fbbf24">&#127942; Awards</h3>
+      <div class="glass glass-hover cal-item" style="background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.2)"><div style="display:flex;align-items:center;gap:8px"><span style="color:#fbbf24;font-size:18px">&#127942;</span><div><div class="cal-item-title">Top Performer</div><div style="font-size:12px;color:#64748b">ADP &middot; 4 Consecutive Years</div></div></div></div>
+      <div class="glass glass-hover cal-item"><div style="display:flex;align-items:center;gap:8px"><span style="color:#fbbf24;font-size:18px">&#11088;</span><div><div class="cal-item-title">Star of the Month</div><div style="font-size:12px;color:#64748b">ADP &middot; Finance & Banking Operations</div></div></div></div>
+      <div class="glass glass-hover cal-item"><div style="display:flex;align-items:center;gap:8px"><span style="color:#fbbf24;font-size:18px">&#128101;</span><div><div class="cal-item-title">Team Excellence Award</div><div style="font-size:12px;color:#64748b">ADP &middot; Finance & Banking Operations</div></div></div></div>
+      <div class="glass glass-hover cal-item"><div style="display:flex;align-items:center;gap:8px"><span style="color:#fbbf24;font-size:18px">&#10084;</span><div><div class="cal-item-title">CSR Leadership Award</div><div style="font-size:12px;color:#64748b">ADP &middot; 4-Year Program Lead</div></div></div></div>
+    </div>
+    <div class="reveal reveal-d2">
+      <h3 style="color:#a78bfa">&#127941; Leadership</h3>
+      <div class="glass glass-hover cal-lead-item"><span>General Secretary, Analytics Club &mdash; Wright State University (2025)</span></div>
+      <div class="glass glass-hover cal-lead-item"><span>Event Coordinator, Analytics Club &mdash; Wright State University (2024)</span></div>
+      <div class="glass glass-hover cal-lead-item"><span>CSR Program Lead &mdash; ADP (4 Years) | NGO & Volunteer Coordination</span></div>
+      <div class="glass glass-hover cal-lead-item"><span>Nonprofit / NGO Stakeholder Coordination &mdash; ADP</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ▬▬▬ FOOTER ▬▬▬ -->
+<footer id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand"><span style="color:#f1f5f9">Priya </span><span class="gradient-text">Kothamasu</span></div>
+      <div class="footer-role">Senior Marketing Analyst & Campaign Operations Lead</div>
+      <div class="footer-loc">&#128205; Mason, OH 45040 &middot; Open to Relocate</div>
+    </div>
+    <div class="footer-actions">
+      <a href="mailto:prikoth2425@gmail.com" class="footer-btn">&#9993; Get in Touch</a>
+      <div class="footer-social">
+        <a href="https://linkedin.com/in/priya-kothamasu-4358992a1" target="_blank" title="LinkedIn">in</a>
+        <a href="https://github.com/priya-marketing-analytics" target="_blank" title="GitHub">&lt;/&gt;</a>
+        <a href="tel:+15137268523" title="Phone">&#9742;</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-roles">
+    <span style="color:#94a3b8;font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-right:4px">Open to:</span>
+    <span class="chip chip-cyan">Marketing Operations Manager</span>
+    <span class="chip chip-cyan">Campaign Analytics Manager</span>
+    <span class="chip chip-cyan">Senior Marketing Analyst</span>
+    <span class="chip chip-cyan">Marketing Program Manager</span>
+    <span class="chip chip-cyan">Operations Manager</span>
+    <span class="chip chip-cyan">Senior Project Manager</span>
+  </div>
+  <div class="footer-copy">&copy; 2025 Lakshmi Priya Kothamasu &middot; prikoth2425@gmail.com &middot; +1-513-726-8523</div>
+</footer>
+
+</div><!-- /content -->
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ── Canvas background ── */
+(function(){
+  var c=document.getElementById('bg-canvas'),ctx=c.getContext('2d');
+  var W,H,particles=[],prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var isMobile=window.innerWidth<768,COUNT=isMobile?25:50,DIST=isMobile?110:150;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  function init(){particles=[];for(var i=0;i<COUNT;i++)particles.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,o:Math.random()*.4+.1})}
+  function draw(){
+    ctx.fillStyle='#050b18';ctx.fillRect(0,0,W,H);
+    var g1=ctx.createRadialGradient(W*.15,H*.2,0,W*.15,H*.2,W*.45);g1.addColorStop(0,'rgba(6,182,212,.06)');g1.addColorStop(1,'transparent');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);
+    var g2=ctx.createRadialGradient(W*.85,H*.8,0,W*.85,H*.8,W*.45);g2.addColorStop(0,'rgba(139,92,246,.05)');g2.addColorStop(1,'transparent');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);
+    for(var i=0;i<particles.length;i++){for(var j=i+1;j<particles.length;j++){var a=particles[i],b=particles[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<DIST){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='rgba(6,182,212,'+(1-d/DIST)*.12+')';ctx.lineWidth=.6;ctx.stroke()}}}
+    particles.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(6,182,212,'+p.o+')';ctx.fill()});
+  }
+  function update(){particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;if(p.y<-10)p.y=H+10;if(p.y>H+10)p.y=-10})}
+  function loop(){draw();update();requestAnimationFrame(loop)}
+  resize();init();
+  if(prefersReduced){draw()}else{loop()}
+  window.addEventListener('resize',function(){resize();init()});
+})();
+
+/* ── Splash ── */
+(function(){
+  var fill=document.getElementById('splash-fill'),splash=document.getElementById('splash'),content=document.getElementById('content');
+  var start=Date.now(),dur=1500;
+  var tick=setInterval(function(){
+    var p=Math.min((Date.now()-start)/dur*100,100);
+    fill.style.width=p+'%';
+    if(p>=100){clearInterval(tick);setTimeout(function(){splash.classList.add('hide');content.classList.add('show')},300)}
+  },16);
+})();
+
+/* ── Scroll progress ── */
+window.addEventListener('scroll',function(){
+  var total=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('scroll-bar').style.width=(total>0?(window.scrollY/total*100):0)+'%';
+},{passive:true});
+
+/* ── Nav scroll state ── */
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+  var links=document.querySelectorAll('.nav-link[data-sec]'),secs=['hero','stats','experience','projects','skills','education','certifications'];
+  var active='hero';
+  for(var i=secs.length-1;i>=0;i--){var el=document.getElementById(secs[i]);if(el&&window.scrollY>=el.offsetTop-120){active=secs[i];break}}
+  links.forEach(function(l){l.classList.toggle('active',l.getAttribute('data-sec')===active)});
+},{passive:true});
+
+/* ── Mobile menu ── */
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('show')}
+function closeMobileMenu(){document.getElementById('mobile-menu').classList.remove('show')}
+
+/* ── Smooth scroll ── */
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+/* ── Timeline accordion ── */
+function toggleTimeline(item){
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.tl-item').forEach(function(el){el.classList.remove('open')});
+  if(!wasOpen)item.classList.add('open');
+}
+
+/* ── Scroll reveal ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:0.1,rootMargin:'-40px'});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+/* ── Animated counters ── */
+(function(){
+  var counters=document.querySelectorAll('.stat-number[data-target]');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target,target=parseInt(el.getAttribute('data-target')),suffix=el.getAttribute('data-suffix')||'',fmt=el.getAttribute('data-format'),start=Date.now(),dur=1800;
+      function tick(){
+        var prog=Math.min((Date.now()-start)/dur,1),ease=1-Math.pow(1-prog,3),val=Math.round(ease*target);
+        var display=fmt==='k'&&val>=1000?(val/1000).toFixed(0)+'K':val.toString();
+        el.innerHTML=display+suffix;
+        if(prog<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  },{threshold:0.3});
+  counters.forEach(function(el){obs.observe(el)});
+})();
+
+/* ── Skill bar animation ── */
+(function(){
+  var fills=document.querySelectorAll('.skill-fill');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('animate');obs.unobserve(e.target)}});
+  },{threshold:0.2});
+  fills.forEach(function(el){obs.observe(el)});
+})();
+</script>
+</body>
+</html>
